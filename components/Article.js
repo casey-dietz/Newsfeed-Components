@@ -89,6 +89,8 @@ const data = [
   }
 ];
 
+// export default data
+
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
   Your component is a function that takes an article object as its only argument,
@@ -114,3 +116,59 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+const articles = document.querySelector('.articles')
+
+function articleMaker(articleObj){
+  
+  const article = document.createElement('div')
+  article.classList.add('article')
+
+  const articleTitle = document.createElement('h2')
+  articleTitle.textContent = articleObj.title;
+  article.appendChild(articleTitle);
+
+  const articleDate = document.createElement('p')
+  articleDate.classList.add('date')
+  articleDate.textContent = articleObj.date
+  article.appendChild(articleDate)
+
+  const articleFirstParagraph = document.createElement('p')
+  articleFirstParagraph.textContent = articleObj.firstParagraph
+  articleDate.appendChild(articleFirstParagraph)
+
+  const articleSecondParagraph = document.createElement('p')
+  articleSecondParagraph.textContent = articleObj.secondParagraph
+  articleDate.appendChild(articleSecondParagraph)
+
+  const articleThirdParagraph = document.createElement('p')
+  articleThirdParagraph.textContent = articleObj.thirdParagraph
+  articleDate.appendChild(articleThirdParagraph)
+
+  const articleExpand = document.createElement('span')
+  articleExpand.classList.add('expandButton')
+  articleExpand.textContent = '+'
+  articleExpand.addEventListener('click', () => {
+    article.classList.toggle('article-open')
+  })
+
+  article.appendChild(articleExpand)
+
+  return article;
+}
+
+data.push({
+  title: 'Working on my Newsfeed Project',
+  date: 'January 19th, 2021',
+  firstParagraph: 'I am working with JS components',
+  secondParagraph: 'Later this week we will dive in deeper to JS components',
+  thirdParagraph: 'This weekend I will have a final sprint exam on components and the DOM'
+})
+
+data.forEach((item) => {
+  articles.appendChild(articleMaker(item))
+})
+
+
+
+
